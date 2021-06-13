@@ -1,30 +1,18 @@
+
 from dataclasses import dataclass, field
+from typing import Type
+from .abstract import SearchItem
 from datetime import date
 from typing import Iterator, Optional, Union
 
-from xsdata.formats.dataclass.models.elements import XmlType
-
-from ...entity.main import Convention
-from ...entity.root import ValidRoot
-from ...entity.utils.converter import Date
-from ...enum import ElementPrefix, ItemType
-from .abstract import SearchItem
+from mugimugi_client_api_entity import SearchConvention as Root, Convention
+from mugimugi_client_api_entity.enum import ItemType, ElementPrefix
 
 
 @dataclass
 class SearchConvention(SearchItem):
-    @dataclass
-    class Root(ValidRoot[Convention]):
-        elements: list[Convention] = field(
-            default_factory=list,
-            metadata=dict(
-                name=Convention.Meta.name, type=XmlType.ELEMENT, min_occurs=0
-            ),
-        )
-
-    root: Root = field(default=Root, init=False)
+    root: Type = field(default=Root, init=False)
     type_: ItemType = field(default=ItemType.CONVENTION, init=False)
-
     date_: Optional[date] = None
 
     @classmethod

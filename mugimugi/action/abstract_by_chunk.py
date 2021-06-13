@@ -3,8 +3,7 @@ from asyncio import as_completed
 from dataclasses import dataclass
 from enum import Enum
 from typing import ClassVar, Collection, Iterator, Union
-
-from ..enum import ElementPrefix
+from mugimugi_client_api_entity.enum import ElementPrefix
 from .abstract import AbstractAction, AsyncClient
 
 

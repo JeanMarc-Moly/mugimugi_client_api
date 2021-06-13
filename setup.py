@@ -28,10 +28,9 @@ setup(
         "httpcore==0.13.4; python_version >= '3.6'",
         "httpx==0.18.1",
         "idna==3.2",
-        "multimethod==1.5",
         "rfc3986[idna2008]==1.5.0",
         "sniffio==1.2.0; python_version >= '3.5'",
-        "xsdata==21.6",
+        "xsdata==21.6; python_version >= '3.6'",
     ],
     extras_require={
         "dev": [
@@ -100,5 +99,7 @@ setup(
             "wrapt==1.12.1",
         ]
     },
-    dependency_links=[],
+    dependency_links=[
+        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git@88e60db87de89d797851f68d536c5874a9b3a4a3#egg=mugimugi-client-api-entity"
+    ],
 )

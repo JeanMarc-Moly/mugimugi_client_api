@@ -1,23 +1,14 @@
 from dataclasses import dataclass, field
-
-from xsdata.formats.dataclass.models.elements import XmlType
-
-from ...entity.main import Circle
-from ...entity.root import ValidRoot
-from ...enum import ElementPrefix, ItemType
+from typing import Type
 from .abstract import SearchItem
+
+from mugimugi_client_api_entity import SearchCircle as Root, Circle
+from mugimugi_client_api_entity.enum import ItemType, ElementPrefix
 
 
 @dataclass
 class SearchCircle(SearchItem):
-    @dataclass
-    class Root(ValidRoot[Circle]):
-        elements: list[Circle] = field(
-            default_factory=list,
-            metadata=dict(name=Circle.Meta.name, type=XmlType.ELEMENT, min_occurs=0),
-        )
-
-    root: Root = field(default=Root, init=False)
+    root: Type = field(default=Root, init=False)
     type_: ItemType = field(default=ItemType.CIRCLE, init=False)
 
     @classmethod

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "15b7bd515aed706b73b218e97cd765af5d587f116501fc03b31f2248f71f2706"
+            "sha256": "e66b8d63714732764b335be76b0971b70f6a23d25d28b2b762fc86a216efae4d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -62,13 +62,9 @@
             ],
             "version": "==3.2"
         },
-        "multimethod": {
-            "hashes": [
-                "sha256:889bcc8feb34181fbfa70f78e92f4c1927f0361e5decef0d2770b6ed7984c41c",
-                "sha256:b9c6f85ecf187f14a3951fff319643e1fac3086d757dec64f2469e1fd136b65d"
-            ],
-            "index": "pypi",
-            "version": "==1.5"
+        "mugimugi-client-api-entity": {
+            "git": "https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git",
+            "ref": "88e60db87de89d797851f68d536c5874a9b3a4a3"
         },
         "rfc3986": {
             "extras": [
@@ -93,7 +89,7 @@
                 "sha256:11acf4692e2a750352308cf466f7c65f17a8e307bd6dd018de9150914bc3693f",
                 "sha256:f624a819c039f8b71d339c2357d8f4b0a61dca4913fdb1b3a4c8e9329af030c0"
             ],
-            "index": "pypi",
+            "markers": "python_version >= '3.6'",
             "version": "==21.6"
         }
     },

@@ -1,23 +1,14 @@
 from dataclasses import dataclass, field
+from typing import Type
 
-from xsdata.formats.dataclass.models.elements import XmlType
-
-from ...entity.main import Content
-from ...entity.root import ValidRoot
-from ...enum.element_prefix import ElementPrefix
 from .abstract import GetItemById
+from mugimugi_client_api_entity import GetContentById as Root, Content
+from mugimugi_client_api_entity.enum import ElementPrefix
 
 
 @dataclass
 class GetContentById(GetItemById):
-    @dataclass
-    class Root(ValidRoot[Content]):
-        elements: list[Content] = field(
-            default_factory=list,
-            metadata=dict(name=Content.Meta.name, type=XmlType.ELEMENT, min_occurs=0),
-        )
-
-    root: Root = field(default=Root, init=False)
+    root: Type = field(default=Root, init=False)
 
     @classmethod
     @property

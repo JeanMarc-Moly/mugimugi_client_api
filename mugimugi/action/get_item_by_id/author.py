@@ -1,23 +1,14 @@
 from dataclasses import dataclass, field
+from typing import Type
 
-from xsdata.formats.dataclass.models.elements import XmlType
-
-from ...entity.main import Author
-from ...entity.root import ValidRoot
-from ...enum.element_prefix import ElementPrefix
 from .abstract import GetItemById
+from mugimugi_client_api_entity import GetAuthorById as Root, Author
+from mugimugi_client_api_entity.enum import ElementPrefix
 
 
 @dataclass
 class GetAuthorById(GetItemById):
-    @dataclass
-    class Root(ValidRoot[Author]):
-        elements: list[Author] = field(
-            default_factory=list,
-            metadata=dict(name=Author.Meta.name, type=XmlType.ELEMENT, min_occurs=0),
-        )
-
-    root: Root = field(default=Root, init=False)
+    root: Type = field(default=Root, init=False)
 
     @classmethod
     @property

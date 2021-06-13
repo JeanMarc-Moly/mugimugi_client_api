@@ -1,23 +1,14 @@
 from dataclasses import dataclass, field
-
-from xsdata.formats.dataclass.models.elements import XmlType
-
-from ...entity.main import Book
-from ...entity.root import ValidRoot
-from ...enum.element_prefix import ElementPrefix
+from typing import Type
 from .abstract import SearchItem
+
+from mugimugi_client_api_entity import SearchBook as Root, Book
+from mugimugi_client_api_entity.enum import ItemType, ElementPrefix
 
 
 @dataclass
 class SearchBook(SearchItem):
-    @dataclass
-    class Root(ValidRoot[Book]):
-        elements: list[Book] = field(
-            default_factory=list,
-            metadata=dict(name=Book.Meta.name, type=XmlType.ELEMENT, min_occurs=0),
-        )
-
-    root: Root = field(default=Root, init=False)
+    root: Type = field(default=Root, init=False)
 
     @classmethod
     @property

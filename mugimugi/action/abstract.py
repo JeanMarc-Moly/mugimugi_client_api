@@ -7,7 +7,7 @@ from typing import Iterator, TypeVar, Union
 from httpx import AsyncClient, Request, Response, codes
 
 from ..configuration import TIMEOUT
-from ..entity.root import FailedRoot, ValidRoot
+from mugimugi_client_api_entity.root import FailedRoot, ValidRoot
 from ..enum import Action
 
 Root = TypeVar("Root", bound=ValidRoot)
