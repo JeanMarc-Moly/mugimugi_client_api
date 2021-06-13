@@ -5,12 +5,12 @@ with (Path(__file__).resolve().parent / "README.md").open(encoding="utf-8") as f
     long_description = f.read()
 
 setup(
-    name="mugimugi",
+    name="mugimugi-client-api-action",
     version="0.2.0",
-    description="Mugimugi api client",
+    description="Mugimugi api enpoints client",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/JeanMarc-Moly/brookie_plugin_library_calibre",
+    url="https://github.com/JeanMarc-Moly/mugimugi_client_api_action",
     author="MOLY Jean-Marc",
     author_email="jeanmarc.moly@gmail.com",
     classifiers=[
