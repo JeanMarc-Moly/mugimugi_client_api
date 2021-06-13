@@ -5,9 +5,9 @@ from enum import Enum
 from typing import ClassVar, Iterator, Type, Union
 
 from httpx import AsyncClient, Request, Response, codes
+from mugimugi_client_api_entity.root import FailedRoot, ValidRoot
 
 from .configuration import TIMEOUT
-from mugimugi_client_api_entity.root import FailedRoot, ValidRoot
 from .enum import Action
 
 

@@ -5,9 +5,10 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import ClassVar, Iterable, Iterator, TypeVar, Union
 
-from .configuration import REQUEST_EDIT_LIST_MAX_COUNT
 from mugimugi_client_api_entity.enum import ElementNode
+
 from .abstract import AbstractAction
+from .configuration import REQUEST_EDIT_LIST_MAX_COUNT
 
 T = TypeVar("T", bound="AbstractUserListAction")
 

@@ -1,8 +1,8 @@
 from typing import ClassVar
 
+from ..abstract_by_chunk import AbstractActionByChunk
 from ..configuration import REQUEST_GET_ID_MAX_COUNT
 from ..enum import Action
-from ..abstract_by_chunk import AbstractActionByChunk
 
 
 class GetItemById(AbstractActionByChunk):

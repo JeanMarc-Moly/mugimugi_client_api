@@ -2,9 +2,10 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import ClassVar, Iterator, Optional, Union
 
-from ..enum import Action, SortOrder
 from mugimugi_client_api_entity.enum import ItemType
+
 from ..abstract_paginated import AbstractPaginatedAction
+from ..enum import Action, SortOrder
 
 
 @dataclass

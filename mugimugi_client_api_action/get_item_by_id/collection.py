@@ -1,9 +1,11 @@
 from dataclasses import dataclass, field
 from typing import Type
 
-from .abstract import GetItemById
-from mugimugi_client_api_entity import GetCollectionById as Root, Collection
+from mugimugi_client_api_entity import Collection
+from mugimugi_client_api_entity import GetCollectionById as Root
 from mugimugi_client_api_entity.enum import ElementPrefix
+
+from .abstract import GetItemById
 
 
 @dataclass

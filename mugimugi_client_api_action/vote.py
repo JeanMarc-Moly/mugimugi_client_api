@@ -2,13 +2,13 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import ClassVar, Iterable, Iterator, Union
 
+from mugimugi_client_api_entity import Book
 from mugimugi_client_api_entity.enum import ElementPrefix
 from mugimugi_client_api_entity.root import UpdateRoot
-from mugimugi_client_api_entity import Book
 
+from .abstract_by_chunk import AbstractActionByChunk
 from .configuration import REQUEST_VOTE_MAX_COUNT
 from .enum import Action, Score
-from .abstract_by_chunk import AbstractActionByChunk
 
 
 @dataclass

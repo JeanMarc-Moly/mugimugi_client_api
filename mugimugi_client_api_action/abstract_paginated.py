@@ -2,8 +2,8 @@ from abc import ABC
 from enum import Enum
 from typing import Iterator, Optional, Union
 
-from .configuration import PARALLEL_PAGES_COUNT, RESPONSE_MAX_COUNT
 from .abstract import AbstractAction, AsyncClient
+from .configuration import PARALLEL_PAGES_COUNT, RESPONSE_MAX_COUNT
 
 
 class AbstractPaginatedAction(AbstractAction, ABC):
