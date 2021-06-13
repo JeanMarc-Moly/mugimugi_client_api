@@ -44,9 +44,7 @@ class AbstractAction:
         return self.parse(await client.send(query, timeout=self.TIMEOUT))
 
     def get_query(self, client: AsyncClient):
-        return client.build_request(
-            method=self.method.value, params=tuple(self.params())
-        )
+        return client.build_request(self.method.value, "", params=tuple(self.params()))
 
     def parse(self, r: Response) -> str:
         content = r.text
