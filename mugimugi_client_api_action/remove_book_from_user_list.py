@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 from typing import ClassVar
 
-from ..enum import Action
+from .enum import Action
 from .abstract_user_list import AbstractUserListAction
 
 
 @dataclass
-class AddBookToUserList(AbstractUserListAction):
-    _ACTION: ClassVar[Action] = Action.ADD_BOOK_TO_USER_LIST
+class RemoveBookFromUserList(AbstractUserListAction):
+    _ACTION: ClassVar[Action] = Action.REMOVE_BOOK_FROM_USER_LIST
 
     @classmethod
     @property

@@ -1,7 +1,7 @@
 from typing import ClassVar
 
-from ...configuration import REQUEST_GET_ID_MAX_COUNT
-from ...enum import Action
+from ..configuration import REQUEST_GET_ID_MAX_COUNT
+from ..enum import Action
 from ..abstract_by_chunk import AbstractActionByChunk
 
 

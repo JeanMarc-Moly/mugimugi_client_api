@@ -6,7 +6,7 @@ from typing import ClassVar, Iterable, Iterator, Optional, Union
 from mugimugi_client_api_entity.root import BookRoot
 
 from mugimugi_client_api_entity.enum import ElementPrefix
-from ..enum import Action, ElementPrefix, ObjectType, SortOrder, YesNo
+from .enum import Action, ObjectType, SortOrder, YesNo
 from .abstract_paginated import AbstractPaginatedAction
 
 
