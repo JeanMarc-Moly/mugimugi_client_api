@@ -8,8 +8,7 @@ python_version = '3.9.5'
 
 [packages]
 httpx = "*"
-multimethod = "*"
-xsdata = "*"
+mugimugi_client_api_entity = { git = "https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git" }
 
 [pipenv]
 allow_prereleases = true

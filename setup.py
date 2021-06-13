@@ -5,12 +5,12 @@ with (Path(__file__).resolve().parent / "README.md").open(encoding="utf-8") as f
     long_description = f.read()
 
 setup(
-    name="mugimugi",
-    version="0.2.0",
-    description="Mugimugi api client",
+    name="mugimugi-client-api-action",
+    version="0.3.0",
+    description="Mugimugi api enpoints client",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/JeanMarc-Moly/brookie_plugin_library_calibre",
+    url="https://github.com/JeanMarc-Moly/mugimugi_client_api_action",
     author="MOLY Jean-Marc",
     author_email="jeanmarc.moly@gmail.com",
     classifiers=[
@@ -28,10 +28,9 @@ setup(
         "httpcore==0.13.4; python_version >= '3.6'",
         "httpx==0.18.1",
         "idna==3.2",
-        "multimethod==1.5",
         "rfc3986[idna2008]==1.5.0",
         "sniffio==1.2.0; python_version >= '3.5'",
-        "xsdata==21.6",
+        "xsdata==21.6; python_version >= '3.6'",
     ],
     extras_require={
         "dev": [
@@ -100,5 +99,7 @@ setup(
             "wrapt==1.12.1",
         ]
     },
-    dependency_links=[],
+    dependency_links=[
+        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git@88e60db87de89d797851f68d536c5874a9b3a4a3#egg=mugimugi-client-api-entity"
+    ],
 )

@@ -1,4 +1,4 @@
-﻿API Manual Ver 0.4
+API Manual Ver 0.4
 
 News: (2017-01-01)
 * Changed limit to 1000 for free users, contributions are doubled ( implemented a while ago ) so if you add 1 book you get 4 books and other edits 2.
