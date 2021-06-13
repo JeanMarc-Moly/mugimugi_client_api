@@ -1,6 +1,6 @@
 from abc import ABC
 from enum import Enum
-from typing import ClassVar, Iterator, Optional, Union
+from typing import ClassVar, Iterator, Optional
 
 from .abstract import AbstractAction, AsyncClient
 from .configuration import PARALLEL_PAGES_COUNT, RESPONSE_MAX_COUNT
@@ -18,7 +18,7 @@ class AbstractPaginatedAction(AbstractAction, ABC):
     def page_size(self) -> int:
         return RESPONSE_MAX_COUNT
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield from super().params()
         yield AbstractPaginatedAction.Parameter.PAGE.value, self.page
 

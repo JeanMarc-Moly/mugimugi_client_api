@@ -3,7 +3,7 @@ from __future__ import annotations
 from abc import ABC
 from dataclasses import dataclass
 from enum import Enum
-from typing import ClassVar, Iterable, Iterator, Union
+from typing import ClassVar, Iterable, Iterator
 
 from mugimugi_client_api_entity.enum import ElementNode
 
@@ -26,7 +26,7 @@ class AbstractUserListAction(AbstractAction, ABC):
     def __init__(self, books: Iterable[int]):
         self.books = set(books)
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield from super().params()
 
         p = self.BOOK_ID_PREFIX

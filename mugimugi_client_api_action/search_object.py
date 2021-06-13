@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from datetime import date
 from enum import Enum
-from typing import ClassVar, Iterable, Iterator, Optional, Union
+from typing import ClassVar, Iterable, Iterator, Optional
 
 from mugimugi_client_api_entity.enum import ElementPrefix
 from mugimugi_client_api_entity.root import BookRoot
@@ -95,7 +95,7 @@ class SearchObject(AbstractPaginatedAction):
     def ACTION(cls) -> Action:
         return cls._ACTION
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield from super().params()
 
         p = self.Parameter

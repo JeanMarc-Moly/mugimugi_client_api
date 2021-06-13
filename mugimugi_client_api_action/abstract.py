@@ -2,7 +2,7 @@ from abc import abstractmethod
 from contextlib import suppress
 from dataclasses import dataclass
 from enum import Enum
-from typing import ClassVar, Iterator, Type, Union
+from typing import ClassVar, Iterator, Type
 
 from httpx import AsyncClient, Request, Response, codes
 from mugimugi_client_api_entity.root import FailedRoot, ValidRoot
@@ -34,7 +34,7 @@ class AbstractAction:
     def method(self) -> Method:
         return self.Method.GET
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield AbstractAction.Parameter.ACTION.value, self.ACTION.value
 
     async def query_one(self, client: AsyncClient):

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import ClassVar, Iterator, Optional, Union
+from typing import ClassVar, Iterator, Optional
 
 from mugimugi_client_api_entity.enum import ItemType
 
@@ -42,7 +42,7 @@ class SearchItem(AbstractPaginatedAction):
     def ACTION(cls) -> Action:
         return cls._ACTION
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield from super().params()
 
         p = self.Parameter

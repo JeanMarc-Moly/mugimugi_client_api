@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from datetime import date
-from typing import Iterator, Optional, Type, Union
+from typing import Iterator, Optional, Type
 
 from mugimugi_client_api_entity import Convention
 from mugimugi_client_api_entity import SearchConvention as Root
@@ -20,7 +20,7 @@ class SearchConvention(SearchItem):
     def PREFIX(cls) -> ElementPrefix:
         return Convention.PREFIX
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield from super().params()
 
         if (date_ := self.date_) is not None:

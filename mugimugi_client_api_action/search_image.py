@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from enum import Enum, IntEnum
 from io import BytesIO
-from typing import Iterator, Union
+from typing import Iterator
 
 from .abstract import AbstractAction, AsyncClient, Request
 
@@ -31,7 +31,7 @@ class SearchImage(AbstractAction):
         if not (self.image or self.locator):
             raise Exception("Requires either 'image' or 'locator'")
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield from super().params()
 
         p = self.Parameter

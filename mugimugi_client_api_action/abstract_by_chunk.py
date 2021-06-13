@@ -2,7 +2,7 @@ from abc import abstractmethod
 from asyncio import as_completed
 from dataclasses import dataclass
 from enum import Enum
-from typing import ClassVar, Collection, Iterator, Union
+from typing import ClassVar, Collection, Iterator
 
 from mugimugi_client_api_entity.enum import ElementPrefix
 
@@ -35,7 +35,7 @@ class AbstractActionByChunk(AbstractAction):
     def PREFIX(cls) -> ElementPrefix:
         ...
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield from super().params()
         r = self.PREFIX.value
 

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from enum import Enum
-from typing import ClassVar, Iterable, Iterator, Union
+from typing import ClassVar, Iterable, Iterator
 
 from mugimugi_client_api_entity import Book
 from mugimugi_client_api_entity.enum import ElementPrefix
@@ -40,6 +40,6 @@ class Vote(AbstractActionByChunk):
     def PREFIX(cls) -> ElementPrefix:
         return Book.PREFIX
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Iterator[tuple[str, str | int]]:
         yield from super().params()
         yield self.Parameter.SCORE.value, self.score.value
