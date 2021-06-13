@@ -1,6 +1,6 @@
 from abc import ABC
 from enum import Enum
-from typing import Iterator, Optional, Union
+from typing import ClassVar, Iterator, Optional, Union
 
 from .abstract import AbstractAction, AsyncClient
 from .configuration import PARALLEL_PAGES_COUNT, RESPONSE_MAX_COUNT
@@ -10,7 +10,7 @@ class AbstractPaginatedAction(AbstractAction, ABC):
     class Parameter(Enum):
         PAGE = "page"  # int > 0
 
-    PAGES: int = PARALLEL_PAGES_COUNT
+    PAGES: ClassVar[int] = PARALLEL_PAGES_COUNT
 
     page: Optional[int] = None
 
