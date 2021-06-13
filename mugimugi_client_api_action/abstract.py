@@ -2,15 +2,13 @@ from abc import abstractmethod
 from contextlib import suppress
 from dataclasses import dataclass
 from enum import Enum
-from typing import Iterator, TypeVar, Union
+from typing import ClassVar, Iterator, Type, Union
 
 from httpx import AsyncClient, Request, Response, codes
 
 from .configuration import TIMEOUT
 from mugimugi_client_api_entity.root import FailedRoot, ValidRoot
 from .enum import Action
-
-Root = TypeVar("Root", bound=ValidRoot)
 
 
 @dataclass
@@ -22,9 +20,9 @@ class AbstractAction:
         GET = "GET"
         POST = "POST"
 
-    TIMEOUT = TIMEOUT
+    TIMEOUT: ClassVar[int] = TIMEOUT
 
-    root: Root
+    root: Type[ValidRoot]
 
     @classmethod
     @property
