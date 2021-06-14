@@ -3,7 +3,7 @@ from enum import Enum
 from typing import ClassVar, Iterator, Optional, Union
 
 from .abstract import AbstractAction, AsyncClient
-from .configuration import PARALLEL_PAGES_COUNT, RESPONSE_MAX_COUNT
+from ._constants import PARALLEL_PAGES_COUNT, RESPONSE_MAX_COUNT
 
 
 class AbstractPaginatedAction(AbstractAction, ABC):
