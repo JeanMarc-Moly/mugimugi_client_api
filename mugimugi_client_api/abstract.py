@@ -7,7 +7,7 @@ from typing import ClassVar, Iterator, Type, Union
 from httpx import AsyncClient, Request, Response, codes
 from mugimugi_client_api_entity.root import FailedRoot, ValidRoot
 
-from .configuration import TIMEOUT
+from ._constants import TIMEOUT
 from .enum import Action
 
 

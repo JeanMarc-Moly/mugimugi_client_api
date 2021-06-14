@@ -7,7 +7,7 @@ from mugimugi_client_api_entity.enum import ElementPrefix
 from mugimugi_client_api_entity.root import UpdateRoot
 
 from .abstract_by_chunk import AbstractActionByChunk
-from .configuration import REQUEST_VOTE_MAX_COUNT
+from ._constants import REQUEST_VOTE_MAX_COUNT
 from .enum import Action, Score
 
 
