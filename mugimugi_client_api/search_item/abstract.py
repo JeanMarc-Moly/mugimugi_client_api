@@ -23,7 +23,6 @@ class SearchItem(AbstractPaginatedAction):
         TITLE = "sn"  # str
         TYPE = "T"  # Type
 
-        DATE = "date"  # str YYYY-MM-DD, limited to convention
         CONTRIBUTOR = "cont"  # str
 
         SORT_CRITERION = "order"  # SortCriterion
@@ -45,7 +44,7 @@ class SearchItem(AbstractPaginatedAction):
     def params(self) -> Iterator[tuple[str, Union[str, int]]]:
         yield from super().params()
 
-        p = self.Parameter
+        p = SearchItem.Parameter
 
         if (title := self.title) is not None:
             yield p.TITLE.value, title
