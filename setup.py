@@ -32,6 +32,7 @@ setup(
         "httpcore==0.13.6; python_version >= '3.6'",
         "httpx==0.18.2",
         "idna==3.2",
+        "lxml==4.6.3; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
         "rfc3986[idna2008]==1.5.0",
         "sniffio==1.2.0; python_version >= '3.5'",
         "xsdata==21.6; python_version >= '3.6'",
@@ -96,7 +97,7 @@ setup(
             "traitlets==5.0.5; python_version >= '3.7'",
             "typed-ast==1.4.3",
             "typing-extensions==3.10.0.0",
-            "urllib3==1.26.6; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4.0'",
+            "urllib3==1.26.6; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
             "vistir==0.5.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "wcwidth==0.2.5",
             "wheel==0.36.2; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
@@ -104,6 +105,6 @@ setup(
         ]
     },
     dependency_links=[
-        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git@7a52d7a7affd2c5c51e34c12a45fa943376c099e#egg=mugimugi-client-api-entity"
+        "git+https://github.com/JeanMarc-Moly/mugimugi_client_api_entity.git@fe4a6f1e1a3d17c573e9538ebec6dbdbc4210d74#egg=mugimugi-client-api-entity"
     ],
 )
