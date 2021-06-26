@@ -1,7 +1,7 @@
 Mugimugi (doujinshi.org) api client
 
 # How to use
-## Get author by id
+## Get authors by id
 ```python
 from mugimugi_client_api import GetAuthorById, MugiMugiClient
 async with MugiMugiClient(MUGIMUGI_API_KEY) as c:
@@ -47,7 +47,7 @@ Author(
     )
 )
 ```
-## Search convention by name:
+## Search conventions by name:
 ```python
 from mugimugi_client_api import MugiMugiClient, SearchConvention, SearchItem, SortOrder
 async with MugiMugiClient(MUGIMUGI_API_KEY) as c:
@@ -109,4 +109,27 @@ Convention(
     _type_validator=<Type.TYPE: <ItemType.CONVENTION: 'convention'>>,
     _links=Convention.Linker(items=[]))
 ...
+```
+## Search conventions by date:
+```python
+from datetime import date
+from mugimugi_client_api import MugiMugiClient, SearchConvention
+async with MugiMugiClient(MUGIMUGI_API_KEY) as c:
+    async for e in SearchConvention(date_=date(2019,12,31)).query_elements(c):
+        print(e)
+```
+```python
+Convention(
+    english_name='Comic Market 97',
+    japanese_name='コミックマーケット97',
+    katakana_name='',
+    other_names=['C97'],
+    version=1,
+    objects_count=11681,
+    date_start=datetime.date(2019, 12, 28),
+    date_end=datetime.date(2019, 12, 31),
+    _id='N4790',
+    _type_validator=<Type.TYPE: <ItemType.CONVENTION: 'convention'>>,
+    _links=Convention.Linker(items=[])
+)
 ```
