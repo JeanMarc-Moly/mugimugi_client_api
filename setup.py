@@ -1,12 +1,16 @@
 from pathlib import Path
-from setuptools import setup, find_packages
 
-with (Path(__file__).resolve().parent / "README.md").open(encoding="utf-8") as f:
+from setuptools import find_packages, setup
+
+project = Path(__file__).resolve().parent
+with (project / "README.md").open(encoding="utf-8") as f:
     long_description = f.read()
+with (project / "VERSION").open(encoding="utf-8") as f:
+    version = f.read()
 
 setup(
     name="mugimugi-client-api",
-    version="0.4.1",
+    version=version,
     description="Mugimugi api enpoints client",
     long_description=long_description,
     long_description_content_type="text/markdown",
