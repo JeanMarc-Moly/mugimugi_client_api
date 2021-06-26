@@ -28,5 +28,6 @@ ipykernel = "*"
 install_dev = 'bash script/install_dev.sh'
 format = 'bash script/format.sh'
 upgrade = 'bash script/upgrade.sh'
+check = 'bash script/check.sh'
 test = 'python -m unittest discover test'
 bump = 'python script/bump_version.py'

@@ -1,5 +1,5 @@
-from dataclasses import dataclass, field
-from typing import Type
+from dataclasses import dataclass
+from typing import ClassVar
 
 from mugimugi_client_api_entity import Imprint
 from mugimugi_client_api_entity import SearchImprint as Root
@@ -10,10 +10,6 @@ from .abstract import SearchItem
 
 @dataclass
 class SearchImprint(SearchItem):
-    root: Type = field(default=Root, init=False)
-    type_: ItemType = field(default=ItemType.IMPRINT, init=False)
-
-    @classmethod
-    @property
-    def PREFIX(cls) -> ElementPrefix:
-        return Imprint.PREFIX
+    ROOT: ClassVar[type] = Root
+    TYPE: ClassVar[ItemType] = ItemType.IMPRINT
+    PREFIX: ClassVar[ElementPrefix] = Imprint.PREFIX

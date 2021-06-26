@@ -1,9 +1,10 @@
 from dataclasses import dataclass
 from enum import Enum, IntEnum
 from io import BytesIO
-from typing import Iterator, Union
+from typing import ClassVar, Optional
 
-from .abstract import AbstractAction, AsyncClient, Request
+from .abstract import AbstractAction, AsyncClient, Params, Request
+from .enum import Action
 
 
 @dataclass
@@ -17,21 +18,23 @@ class SearchImage(AbstractAction):
         COLOR = 3
         AUTO = 4
 
-    METHOD = "POST"
-    FILE_NAME = "img"
-    MAX_RETURN_SIZE = 100
-    MAX_WIDTH = 5000
-    MAX_HEIGHT = 5000
+    METHOD: ClassVar[AbstractAction.Method] = AbstractAction.Method.POST
+    ACTION: ClassVar[Action] = Action.SEARCH_IMAGE
 
-    image: BytesIO = None
-    locator: str = None  # URL
+    FILE_NAME: ClassVar[str] = "img"
+    MAX_RETURN_SIZE: ClassVar[int] = 100
+    MAX_WIDTH: ClassVar[int] = 5000
+    MAX_HEIGHT: ClassVar[int] = 5000
+
+    image: Optional[BytesIO] = None
+    locator: Optional[str] = None  # URL
     coloring: Coloring = Coloring.AUTO
 
     def __post_init__(self):
         if not (self.image or self.locator):
             raise Exception("Requires either 'image' or 'locator'")
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Params:
         yield from super().params()
 
         p = self.Parameter
@@ -42,9 +45,10 @@ class SearchImage(AbstractAction):
         if (coloring := self.coloring) is not None:
             yield p.COLORING.value, coloring
 
-    def get_request(self, c: AsyncClient) -> Request:
-        return c.build_request(
-            method=self.METHOD,
-            data=self.params(),
+    def get_query(self, client: AsyncClient) -> Request:
+        return client.build_request(
+            self.METHOD.value,
+            "",
+            data=dict(self.params()),
             files=((self.FILE_NAME, self.image),) if self.image else None,
         )

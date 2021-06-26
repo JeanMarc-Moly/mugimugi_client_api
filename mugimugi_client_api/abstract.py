@@ -1,18 +1,16 @@
-from abc import abstractmethod
-from contextlib import suppress
-from dataclasses import dataclass
+from abc import ABC, abstractmethod
 from enum import Enum
-from typing import ClassVar, Iterator, Type, Union
+from typing import ClassVar, Iterator, Union
 
-from httpx import AsyncClient, Request, Response, codes
-from mugimugi_client_api_entity.root import FailedRoot, ValidRoot
+from httpx import AsyncClient, Request
 
 from ._constants import TIMEOUT
 from .enum import Action
 
+Params = Iterator[tuple[str, Union[str, int]]]
 
-@dataclass
-class AbstractAction:
+
+class AbstractAction(ABC):
     class Parameter(Enum):
         ACTION = "S"  # Action
 
@@ -22,37 +20,20 @@ class AbstractAction:
 
     TIMEOUT: ClassVar[int] = TIMEOUT
 
-    root: Type[ValidRoot]
-
     @classmethod
     @property
     @abstractmethod
     def ACTION(cls) -> Action:
         ...
 
+    @classmethod
     @property
-    def method(self) -> Method:
-        return self.Method.GET
+    @abstractmethod
+    def METHOD(cls) -> Method:
+        ...
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Params:
         yield AbstractAction.Parameter.ACTION.value, self.ACTION.value
 
-    async def query_one(self, client: AsyncClient):
-        return await self.send_and_parse(client, self.get_query(client))
-
-    async def send_and_parse(self, client: AsyncClient, query: Request):
-        return self.parse(await client.send(query, timeout=self.TIMEOUT))
-
-    def get_query(self, client: AsyncClient):
-        return client.build_request(self.method.value, "", params=tuple(self.params()))
-
-    def parse(self, r: Response) -> str:
-        content = r.text
-
-        if (status := r.status_code) != codes.OK:
-            raise Exception(f"Error {codes(status)} ({status}): {content}")
-
-        with suppress(TypeError):
-            FailedRoot.parse(content).error.blow()
-
-        return self.root.parse(content)
+    def get_query(self, client: AsyncClient) -> Request:
+        return client.build_request(self.METHOD.value, "", params=tuple(self.params()))
