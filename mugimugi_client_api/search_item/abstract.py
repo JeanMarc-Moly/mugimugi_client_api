@@ -1,24 +1,29 @@
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from enum import Enum
-from typing import ClassVar, Iterator, Optional, Union
+from typing import ClassVar, Optional
 
 from mugimugi_client_api_entity.enum import ItemType
 
-from ..abstract_paginated import AbstractPaginatedAction
+from ..abstract_paginated import AbstractPaginatedAction, Params
 from ..enum import Action, SortOrder
 
 
 @dataclass
-class SearchItem(AbstractPaginatedAction):
-
-    # noinspection SpellCheckingInspection
+class _SearchItem(ABC):
     class SortCriterion(Enum):
         TITLE = "title"
         JAPANESE_TITLE = "jtitle"
         OBJECTS = "objects"
         LAST_MODIFICATION_DATE = "changed"
 
-    # noinspection SpellCheckingInspection
+    title: Optional[str] = None
+    contributor: Optional[str] = None
+    sort_criterion: Optional[SortCriterion] = None
+    sort_order: Optional[SortOrder] = None
+
+
+class SearchItem(AbstractPaginatedAction, _SearchItem, ABC):
     class Parameter(Enum):
         TITLE = "sn"  # str
         TYPE = "T"  # Type
@@ -28,29 +33,23 @@ class SearchItem(AbstractPaginatedAction):
         SORT_CRITERION = "order"  # SortCriterion
         SORT_ORDER = "flow"  # SortOrder
 
-    _ACTION: ClassVar[Action] = Action.SEARCH_ITEM
-
-    type_: ItemType
-    title: Optional[str] = None
-    contributor: Optional[str] = None
-    sort_criterion: Optional[SortCriterion] = None
-    sort_order: Optional[SortOrder] = None
+    ACTION: ClassVar[Action] = Action.SEARCH_ITEM
 
     @classmethod
     @property
-    def ACTION(cls) -> Action:
-        return cls._ACTION
+    @abstractmethod
+    def TYPE(cls) -> ItemType:
+        ...
 
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Params:
         yield from super().params()
 
         p = SearchItem.Parameter
 
+        yield p.TYPE.value, self.TYPE.value
+
         if (title := self.title) is not None:
             yield p.TITLE.value, title
-
-        if (type_ := self.type_) is not None:
-            yield p.TYPE.value, type_.value
 
         if (contributor := self.contributor) is not None:
             yield p.CONTRIBUTOR.value, contributor

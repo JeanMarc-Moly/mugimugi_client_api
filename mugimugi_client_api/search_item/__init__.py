@@ -1,6 +1,5 @@
 from .abstract import SearchItem
 from .author import SearchAuthor
-from .book import SearchBook
 from .character import SearchCharacter
 from .circle import SearchCircle
 from .collection import SearchCollection

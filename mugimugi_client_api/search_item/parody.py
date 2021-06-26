@@ -1,5 +1,5 @@
-from dataclasses import dataclass, field
-from typing import Type
+from dataclasses import dataclass
+from typing import ClassVar
 
 from mugimugi_client_api_entity import Parody
 from mugimugi_client_api_entity import SearchParody as Root
@@ -10,10 +10,6 @@ from .abstract import SearchItem
 
 @dataclass
 class SearchParody(SearchItem):
-    root: Type = field(default=Root, init=False)
-    type_: ItemType = field(default=ItemType.PARODY, init=False)
-
-    @classmethod
-    @property
-    def PREFIX(cls) -> ElementPrefix:
-        return Parody.PREFIX
+    ROOT: ClassVar[type] = Root
+    TYPE: ClassVar[ItemType] = ItemType.PARODY
+    PREFIX: ClassVar[ElementPrefix] = Parody.PREFIX

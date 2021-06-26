@@ -1,12 +1,12 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from datetime import date
 from enum import Enum
-from typing import ClassVar, Iterable, Iterator, Optional, Union
+from typing import ClassVar, Iterable, Optional
 
 from mugimugi_client_api_entity.enum import ElementPrefix
 from mugimugi_client_api_entity.root import BookRoot
 
-from .abstract_paginated import AbstractPaginatedAction
+from .abstract_paginated import AbstractPaginatedAction, Params
 from .enum import Action, ObjectType, SortOrder, YesNo
 
 
@@ -59,14 +59,13 @@ class SearchObject(AbstractPaginatedAction):
         # ex: &slist=C:Electro|K:Swimsuit|P:Moetan
         CONTENT = "slist"
 
-    _ACTION: ClassVar[Action] = Action.SEARCH_OBJECT
+    ACTION: ClassVar[Action] = Action.SEARCH_OBJECT
+    ROOT: ClassVar[type] = BookRoot
+
     CONTENT_SEPARATOR: ClassVar[str] = "|"
     CONTENT_ASSOCIATION: ClassVar[str] = ":"
 
-    root: BookRoot = field(default=BookRoot, init=False)
-
     title: Optional[str] = None
-    page: Optional[int] = None
     is_adult_only: Optional[YesNo] = None
     is_anthology: Optional[YesNo] = None
     is_copy_book: Optional[YesNo] = None
@@ -90,12 +89,7 @@ class SearchObject(AbstractPaginatedAction):
     sort_criterion: Optional[SortCriterion] = None
     sort_order: Optional[SortOrder] = None
 
-    @classmethod
-    @property
-    def ACTION(cls) -> Action:
-        return cls._ACTION
-
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Params:
         yield from super().params()
 
         p = self.Parameter
@@ -141,7 +135,7 @@ class SearchObject(AbstractPaginatedAction):
 
         a = self.CONTENT_ASSOCIATION
         i = ElementPrefix
-        query = []
+        query: list[str] = []
 
         if circles := self.circles:
             t = i.CIRCLE.value

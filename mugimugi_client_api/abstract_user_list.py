@@ -3,16 +3,26 @@ from __future__ import annotations
 from abc import ABC
 from dataclasses import dataclass
 from enum import Enum
-from typing import ClassVar, Iterable, Iterator, Union
+from .abstract_xml import AbstractXMLAction
+from typing import ClassVar, Iterable
 
 from mugimugi_client_api_entity.enum import ElementNode
 
-from .abstract import AbstractAction
 from ._constants import REQUEST_EDIT_LIST_MAX_COUNT
+from .abstract import Params
 
 
 @dataclass
-class AbstractUserListAction(AbstractAction, ABC):
+class _AbstractUserListAction(ABC):
+    books: set[int]
+
+    def __init__(self, books: Iterable[int]):
+        if not books:
+            raise Exception("Requires at least one book")
+        self.books = set(books)
+
+
+class AbstractUserListAction(AbstractXMLAction, _AbstractUserListAction, ABC):
     class Parameter(Enum):
         ID = "ID"
 
@@ -21,12 +31,7 @@ class AbstractUserListAction(AbstractAction, ABC):
     # Beyond this count, books are ignored.
     MAX_COUNT_OF_BOOK = REQUEST_EDIT_LIST_MAX_COUNT
 
-    books: set[int]
-
-    def __init__(self, books: Iterable[int]):
-        self.books = set(books)
-
-    def params(self) -> Iterator[tuple[str, Union[str, int]]]:
+    def params(self) -> Params:
         yield from super().params()
 
         p = self.BOOK_ID_PREFIX

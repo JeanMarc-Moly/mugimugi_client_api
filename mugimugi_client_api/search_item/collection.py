@@ -1,5 +1,5 @@
-from dataclasses import dataclass, field
-from typing import Type
+from dataclasses import dataclass
+from typing import ClassVar
 
 from mugimugi_client_api_entity import Collection
 from mugimugi_client_api_entity import SearchCollection as Root
@@ -10,10 +10,6 @@ from .abstract import SearchItem
 
 @dataclass
 class SearchCollection(SearchItem):
-    root: Type = field(default=Root, init=False)
-    type_: ItemType = field(default=ItemType.COLLECTION, init=False)
-
-    @classmethod
-    @property
-    def PREFIX(cls) -> ElementPrefix:
-        return Collection.PREFIX
+    ROOT: ClassVar[type] = Root
+    TYPE: ClassVar[ItemType] = ItemType.COLLECTION
+    PREFIX: ClassVar[ElementPrefix] = Collection.PREFIX
