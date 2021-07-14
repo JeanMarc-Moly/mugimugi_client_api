@@ -1,10 +1,11 @@
 from abc import ABC, abstractmethod
 from contextlib import suppress
 from typing import ClassVar
-from mugimugi_client_api.abstract import AbstractAction
 
 from httpx import AsyncClient, Request, Response, codes
 from mugimugi_client_api_entity.root import FailedRoot, ValidRoot
+
+from mugimugi_client_api.abstract import AbstractAction
 
 
 class AbstractXMLAction(AbstractAction, ABC):

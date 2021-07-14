@@ -1,4 +1,5 @@
 from typing import ClassVar
+
 from mugimugi_client_api_entity import GetPublisherById as Root
 from mugimugi_client_api_entity import Publisher
 from mugimugi_client_api_entity.enum import ElementPrefix

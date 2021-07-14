@@ -1,4 +1,5 @@
 from typing import ClassVar
+
 from mugimugi_client_api_entity import Character
 from mugimugi_client_api_entity import GetCharacterById as Root
 from mugimugi_client_api_entity.enum import ElementPrefix

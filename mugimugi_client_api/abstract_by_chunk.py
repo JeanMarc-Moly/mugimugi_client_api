@@ -2,13 +2,13 @@ from abc import ABC, abstractmethod
 from asyncio import as_completed
 from dataclasses import dataclass
 from enum import Enum
-from .abstract import Params
 from typing import AsyncGenerator, ClassVar
 
 from mugimugi_client_api_entity.common.element import Element
 from mugimugi_client_api_entity.enum import ElementPrefix
 from mugimugi_client_api_entity.root import ValidRoot
 
+from .abstract import Params
 from .abstract_xml import AbstractXMLAction, AsyncClient
 
 

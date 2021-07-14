@@ -3,13 +3,13 @@ from __future__ import annotations
 from abc import ABC
 from dataclasses import dataclass
 from enum import Enum
-from .abstract_xml import AbstractXMLAction
 from typing import ClassVar, Iterable
 
 from mugimugi_client_api_entity.enum import ElementNode
 
 from ._constants import REQUEST_EDIT_LIST_MAX_COUNT
 from .abstract import Params
+from .abstract_xml import AbstractXMLAction
 
 
 @dataclass
