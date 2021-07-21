@@ -1,4 +1,5 @@
 from typing import ClassVar
+
 from mugimugi_client_api_entity import GetParodyById as Root
 from mugimugi_client_api_entity import Parody
 from mugimugi_client_api_entity.enum import ElementPrefix

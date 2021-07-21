@@ -1,7 +1,6 @@
 from abc import ABC
 from dataclasses import dataclass
 from enum import Enum
-from .abstract_xml import AbstractXMLAction, AsyncClient
 from typing import AsyncGenerator, ClassVar
 
 from mugimugi_client_api_entity.common.element import Element
@@ -9,7 +8,7 @@ from mugimugi_client_api_entity.root import ValidRoot
 
 from ._constants import PARALLEL_PAGES_COUNT, RESPONSE_MAX_COUNT
 from .abstract import Params
-
+from .abstract_xml import AbstractXMLAction, AsyncClient
 
 
 @dataclass
@@ -22,7 +21,7 @@ class AbstractPaginatedAction(AbstractXMLAction, _AbstractPaginatedAction, ABC):
         PAGE = "page"  # int > 0
 
     PAGES: ClassVar[int] = PARALLEL_PAGES_COUNT
-    PAGE_SIZE : ClassVar[int] = RESPONSE_MAX_COUNT
+    PAGE_SIZE: ClassVar[int] = RESPONSE_MAX_COUNT
 
     def params(self) -> Params:
         yield from super().params()

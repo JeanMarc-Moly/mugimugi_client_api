@@ -1,4 +1,5 @@
 from typing import ClassVar
+
 from mugimugi_client_api_entity import Circle
 from mugimugi_client_api_entity import GetCircleById as Root
 from mugimugi_client_api_entity.enum import ElementPrefix

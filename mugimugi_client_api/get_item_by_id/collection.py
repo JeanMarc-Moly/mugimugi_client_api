@@ -1,4 +1,5 @@
 from typing import ClassVar
+
 from mugimugi_client_api_entity import Collection
 from mugimugi_client_api_entity import GetCollectionById as Root
 from mugimugi_client_api_entity.enum import ElementPrefix

@@ -1,4 +1,5 @@
 from typing import ClassVar
+
 from mugimugi_client_api_entity import Convention
 from mugimugi_client_api_entity import GetConventionById as Root
 from mugimugi_client_api_entity.enum import ElementPrefix
