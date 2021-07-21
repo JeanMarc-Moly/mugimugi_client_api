@@ -3,12 +3,16 @@ from enum import Enum, IntEnum
 from io import BytesIO
 from typing import ClassVar, Optional
 
-from .abstract import AbstractAction, AsyncClient, Params, Request
+from httpx import AsyncClient, Request
+from mugimugi_client_api_entity.root import MatchedBookRoot
+
+from .abstract import Params
+from .abstract_xml import AbstractXMLAction
 from .enum import Action
 
 
 @dataclass
-class SearchImage(AbstractAction):
+class SearchImage(AbstractXMLAction):
     class Parameter(Enum):
         COLORING = "colors"  # Coloring
         IMAGE_LOCATOR = "URL"  # str
@@ -18,8 +22,9 @@ class SearchImage(AbstractAction):
         COLOR = 3
         AUTO = 4
 
-    METHOD: ClassVar[AbstractAction.Method] = AbstractAction.Method.POST
+    METHOD: ClassVar[AbstractXMLAction.Method] = AbstractXMLAction.Method.POST
     ACTION: ClassVar[Action] = Action.SEARCH_IMAGE
+    ROOT: ClassVar[type] = MatchedBookRoot
 
     FILE_NAME: ClassVar[str] = "img"
     MAX_RETURN_SIZE: ClassVar[int] = 100
@@ -43,12 +48,12 @@ class SearchImage(AbstractAction):
             yield p.IMAGE_LOCATOR.value, locator
 
         if (coloring := self.coloring) is not None:
-            yield p.COLORING.value, coloring
+            yield p.COLORING.value, coloring.value
 
     def get_query(self, client: AsyncClient) -> Request:
         return client.build_request(
             self.METHOD.value,
             "",
-            data=dict(self.params()),
+            params=tuple(self.params()),
             files=((self.FILE_NAME, self.image),) if self.image else None,
         )
