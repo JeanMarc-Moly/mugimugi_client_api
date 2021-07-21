@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.6.0] - 2021-07-21
+
+- Add `searchImage`, querying books from image.
+
 ## [0.5.0] - 2021-06-26
 
 - Changes to all entities
